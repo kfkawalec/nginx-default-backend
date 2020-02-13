@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  nginx-default-backend:
+    container_name: nginx-default-backend
+    build: .
+    # environment:
+    #   - ERROR_DOMAIN=https://cdn.ires.pl
+    ports:
+      - 88:80
