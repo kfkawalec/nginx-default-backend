@@ -1,4 +1,4 @@
-name: "build and push (tag: latest)"
+name: "build and push (tag: 1)"
 
 on:
   push:
@@ -14,9 +14,9 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/delete-package-versions@v1
       with:
-        package-name: 'nginx-default-backend'
+        package-name: 'default'
     - run: |
-        IMAGE_NAME="docker.pkg.github.com/${GITHUB_REPOSITORY}/nginx-default-backend:latest"
+        IMAGE_NAME="docker.pkg.github.com/${GITHUB_REPOSITORY}/nginx-default-backend:1"
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://docker.pkg.github.com -u ${GITHUB_ACTOR} --password-stdin
         docker build -t $IMAGE_NAME 1/.
         docker push $IMAGE_NAME
