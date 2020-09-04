@@ -1,0 +1,17 @@
+name: Build and push Docker images
+
+on:
+  push:
+    paths:
+    - "**Dockerfile**"
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    name: Build Docker Image
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+    - run: docker build -t latest .
+    - run: docker push latest
